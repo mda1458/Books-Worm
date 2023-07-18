@@ -1,15 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import BooksList from "./components/BooksList"
+import Home from "./components/Home"
+import AuthorsList from "./components/AuthorsList"
 
 const App = () => {
+  const links = [ "Books", "Authors" ]
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar links={links}/>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/about" element={<h1>About</h1>} />
-        <Route path="/services" element={<h1>Services</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<BooksList />} />
+        <Route path="/authors" element={<AuthorsList />} />
       </Routes>
       <Footer />
     </BrowserRouter>

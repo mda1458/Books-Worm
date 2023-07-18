@@ -1,17 +1,17 @@
-const Navbar = () => {
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import { useState } from "react";
+
+const Navbar = ({ links }) => {
+    const [active, setActive] = useState("");
+    
+
   return (
     <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8 mr-3"
-            alt="Flowbite Logo"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap">
-            Flowbite
-          </span>
-        </a>
+        <Link to="/" className="flex items-center">
+          <img src={logo} className="h-8 mr-3" alt="Logo" />
+        </Link>
         <div className="flex md:order-2">
           <button
             type="button"
@@ -113,36 +113,25 @@ const Navbar = () => {
             <input
               type="text"
               id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500-500-500"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Search..."
             />
           </div>
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white md">
-            <li>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md"
-                aria-current="page"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md-500-700 md"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0-500-700 md"
-              >
-                Services
-              </a>
-            </li>
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+            {links.map((link, idx) => (
+              <li key={idx}>
+                <Link
+                  to={`/${link.toLowerCase()}`}
+                  onClick={() => setActive(link)}
+                  className={
+                    `block py-2 pl-3 pr-4 rounded transition-all hover:text-[#4D331F] hover:border-b-[#4D331F] hover:border-b-2 ` +
+                    (active === link ? "text-[#4D331F]" : "")
+                  }
+                >
+                  {link}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
