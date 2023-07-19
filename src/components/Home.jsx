@@ -1,6 +1,12 @@
 import { BiSearchAlt } from "react-icons/bi";
 
 const Home = () => {
+  const searchBook = (e) => {
+    e.preventDefault();
+  }
+  const searchAuthor = (e) => {
+    e.preventDefault();
+  }
   return (
     <div className="relative max-w-5xl mx-4 md:mx-auto pt-16">
       <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center">
