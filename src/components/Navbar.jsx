@@ -5,7 +5,7 @@ import { useState } from "react";
 const Navbar = ({ links }) => {
     const [active, setActive] = useState("");
   return (
-    <nav className="bg-white border-gray-200">
+    <nav className="bg-white border-gray-200 h-[10vh]">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
           <img src={logo} className="h-8 mr-3" alt="Logo" />
@@ -57,7 +57,7 @@ const Navbar = ({ links }) => {
             <input
               type="text"
               id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500-500-500"
+              className="block w-full p-2 pl-10 text-sm text-slate-900 rounded-lg outline-none transition-all duration-500 hover:ring-2 hover:ring-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-4"
               placeholder="Search..."
             />
           </div>
@@ -91,7 +91,7 @@ const Navbar = ({ links }) => {
           id="navbar-search"
         >
           <div className="relative mt-3 md:hidden">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
                 className="w-4 h-4 text-gray-500"
                 aria-hidden="true"
@@ -111,7 +111,7 @@ const Navbar = ({ links }) => {
             <input
               type="text"
               id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+              className="block w-full p-2 pl-10 text-sm text-slate-900 rounded-lg outline-none transition-all duration-500 hover:ring-2 hover:ring-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-4"
               placeholder="Search..."
             />
           </div>
@@ -122,7 +122,7 @@ const Navbar = ({ links }) => {
                   to={`/${link.toLowerCase()}`}
                   onClick={() => setActive(link)}
                   className={
-                    `block py-2 pl-3 pr-4 rounded transition-all hover:text-[#4D331F] hover:border-b-[#4D331F] hover:border-b-2 ` +
+                    `block py-2 pl-3 pr-4 rounded text-slate-900 transition-all hover:text-[#4D331F] hover:border-b-[#4D331F] hover:border-b-2 ` +
                     (active === link ? "text-[#4D331F]" : "")
                   }
                 >
