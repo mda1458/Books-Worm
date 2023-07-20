@@ -47,7 +47,7 @@ const Home = () => {
           placeholder="Quick Search Authors ..."
         />
         <button
-          type="button"
+          type="submit"
           className="inline-flex text-3xl items-center px-4 py-3 border border-transparent font-medium rounded-3xl shadow-sm text-black transition-all duration-500 hover:bg-[var(--primary-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)] "
         >
           <BiSearchAlt />
