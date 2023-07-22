@@ -1,6 +1,9 @@
-import data from "../data.json";
+import { useContext } from "react";
+import { Context } from "../contexts/Context";
+import { BiLoader } from "react-icons/bi";
 
 const BooksList = () => {
+  const context = useContext(Context);
   return (
     <div className="flex flex-col justify-center item-center mx-24">
       <h1 className="text-5xl text-slate-900 my-8 font-bold text-center">
@@ -9,11 +12,12 @@ const BooksList = () => {
       <div className="text-slate-600 text-center italic text-lg mb-8">
         Search results for:{" "}
         <span className="text-[var(--primary-color)] font-bold underline underline-offset-4">
-          Hello
+          {context.state.search}
         </span>
       </div>
       <div className="flex flex-wrap justify-center items-center gap-4">
-        {data.results.map((book) => (
+        {context.loading? <BiLoader className="animate-spin text-6xl text-[var(--primary-color)]"/> :
+        context.state.books.results.map((book) => (
           <div
             key={book.recommended_isbns[0]}
             className="flex flex-col justify-center items-center p-4 border-2 rounded-md shadow-xl w-[calc((100vw-16rem)/3)] gap-4 h-[30rem]"
