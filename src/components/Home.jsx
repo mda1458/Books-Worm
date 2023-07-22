@@ -1,12 +1,41 @@
 import { BiSearchAlt } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Context } from "../contexts/Context";
+import { useContext } from "react";
 
 const Home = () => {
-  const searchBook = (e) => {
+  const navigate = useNavigate();
+  const context = useContext(Context)
+
+  const searchBook = async (e) => {
     e.preventDefault();
-  }
+    context.setState({loading: true})
+    const search = e.target.search.value;
+    const options = {
+      method: "GET",
+      url: "https://book-finder1.p.rapidapi.com/api/search",
+      params: {
+        title: search,
+        page: "1",
+      },
+      headers: {
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
+        "X-RapidAPI-Host": "book-finder1.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      context.setState({books: response.data, loading: false, search: search})
+      navigate("/books");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const searchAuthor = (e) => {
     e.preventDefault();
-  }
+  };
   return (
     <div className="relative max-w-5xl mx-4 md:mx-auto pt-16">
       <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center">
@@ -20,7 +49,10 @@ const Home = () => {
         knowledge reigns supreme, and every reader finds solace in the company
         of words.
       </p>
-      <form onSubmit={searchBook} className="mt-6 sm:mt-10 flex justify-center space-x-6 text-sm">
+      <form
+        onSubmit={searchBook}
+        className="mt-6 sm:mt-10 flex justify-center space-x-6 text-sm"
+      >
         <input
           type="text"
           className="px-2 py-1 transition-all duration-500 hover:ring-2 hover:ring-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-4 outline-none rounded-3xl shadow-xl w-64"
@@ -38,7 +70,10 @@ const Home = () => {
       <div className="flex items-center justify-center my-6">
         <p className="text-slate-300 text-lg">OR</p>
       </div>
-      <form onSubmit={searchAuthor} className="flex justify-center space-x-6 text-sm">
+      <form
+        onSubmit={searchAuthor}
+        className="flex justify-center space-x-6 text-sm"
+      >
         <input
           type="text"
           className="px-2 py-1 transition-all duration-500 hover:ring-2 hover:ring-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-4 outline-none rounded-3xl shadow-xl w-64"
