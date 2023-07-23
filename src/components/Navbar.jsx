@@ -36,7 +36,7 @@ const Navbar = ({ links }) => {
             <span className="sr-only">Search</span>
           </button>
           <div className="relative hidden md:block">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <Link to={"/"} className="absolute inset-y-0 left-0 flex items-center pl-3 cursor-pointer">
               <svg
                 className="w-4 h-4 text-gray-500"
                 aria-hidden="true"
@@ -53,13 +53,7 @@ const Navbar = ({ links }) => {
                 />
               </svg>
               <span className="sr-only">Search icon</span>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-slate-900 rounded-lg outline-none transition-all duration-500 hover:ring-2 hover:ring-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-4"
-              placeholder="Search..."
-            />
+            </Link>
           </div>
           <button
             data-collapse-toggle="navbar-search"
