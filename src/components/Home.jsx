@@ -39,7 +39,7 @@ const Home = () => {
     }
   };
   return (
-    <div className="relative max-w-5xl mx-4 md:mx-auto pt-16">
+    <div className="h-screen flex flex-col justify-center max-w-5xl mx-4 md:mx-auto">
       <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center">
         Explore Limitless{" "}
         <span className="text-[var(--primary-color)]">Books</span>, One
