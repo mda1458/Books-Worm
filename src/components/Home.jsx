@@ -2,15 +2,17 @@ import { BiSearchAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../contexts/Context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import LoadingBar from "react-top-loading-bar";
 
 const Home = () => {
+  const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
   const context = useContext(Context)
 
   const searchBook = async (e) => {
     e.preventDefault();
-    context.setState({loading: true})
+    setProgress(30);
     const search = e.target.search.value;
     const options = {
       method: "GET",
@@ -18,6 +20,7 @@ const Home = () => {
       params: {
         title: search,
         page: "1",
+        results_per_page: "50",
       },
       headers: {
         "X-RapidAPI-Key": import.meta.env.VITE_RAPIDAPI_KEY,
@@ -26,8 +29,10 @@ const Home = () => {
     };
 
     try {
+      setProgress(30);
       const response = await axios.request(options);
-      context.setState({books: response.data, loading: false, search: search})
+      setProgress(80);
+      context.setState({books: {total:response.data.total_results, results:response.data.results}, search: search})
       navigate("/books");
     } catch (error) {
       console.error(error);
@@ -88,7 +93,13 @@ const Home = () => {
           <BiSearchAlt />
         </button>
       </form>
+      <LoadingBar
+        color="#4D331F"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
     </div>
+    
   );
 };
 
