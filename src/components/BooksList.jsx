@@ -56,7 +56,7 @@ const BooksList = () => {
 
   
   return (
-    <div className="flex flex-col justify-center item-center mx-24">
+    <div className="flex flex-col justify-center item-center lg:mx-24 pt-[3rem]">
       <h1 className="text-5xl text-slate-900 my-8 font-bold text-center">
         Books List
       </h1>
@@ -85,15 +85,20 @@ const BooksList = () => {
             No more results
           </p>
         }
-        style={{ overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "4rem" }}
+        style={{
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginBottom: "4rem",
+        }}
         scrollThreshold={0.6}
       >
         <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
-          {
-          context.state.books.results.map((book, idx) => (
+          {context.state.books.results.map((book, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-center items-center p-4 border-2 rounded-md shadow-xl w-[calc((100vw-16rem)/3)] gap-4 h-[30rem]"
+              className="flex flex-col justify-center items-center p-4 border-2 rounded-md shadow-xl lg:w-[calc((100vw-16rem)/3)] lg:gap-4 lg:h-[30rem]"
             >
               <h2 className="text-xl font-bold text-slate-900 text-center">
                 {book.title}
@@ -121,8 +126,7 @@ const BooksList = () => {
                 Buy Now On Amazon
               </a>
             </div>
-          ))
-          }
+          ))}
         </div>
       </InfiniteScroll>
     </div>
