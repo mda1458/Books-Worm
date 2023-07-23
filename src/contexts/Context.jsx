@@ -6,7 +6,6 @@ const ContextProvider = ({ children }) => {
     const [state, setState] = useState({
       search: "",
       books: { total: 0, results: [] },
-      authors: { total: 0, results: [] },
     });
     return (
         <Context.Provider value={{state, setState}}>
